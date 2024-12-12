@@ -19,7 +19,7 @@ const Card: React.FC<CardProps> = ({ product, onAddToCart, onViewDetails }) => {
       <h3>{product.title}</h3>
       <p>Price: ${product.price}</p>
       <button onClick={onAddToCart}>Add to Cart</button>
-      {onViewDetails && <button onClick={onViewDetails}>View Details</button>}
+      {/* <button onClick={onViewDetails}>View Details</button> */}
     </div>
   );
 };
