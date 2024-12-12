@@ -4,7 +4,7 @@ import { CartProvider } from './context/CartContext';
 import ProductList from './pages/ProductList';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
-import  Header  from './components/Header.tsx';
+import  Header  from './components/Header';
 
 const App = () => {
   return (
