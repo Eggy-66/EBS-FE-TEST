@@ -1,11 +1,24 @@
-function App() {
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <h1>Welcome to the Front-End Developer Test!</h1>
-      <p>We wish you the best of luck. Please make sure to read the README file for
-        instructions.</p>
-    </div>
-  )
-}
 
-export default App
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
+import ProductList from './pages/ProductList';
+import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
+import  Header  from './components/Header.tsx';
+
+const App = () => {
+  return (
+    <CartProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<ProductList />} />
+          <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </Router>
+    </CartProvider>
+  );
+};
+
+export default App;
