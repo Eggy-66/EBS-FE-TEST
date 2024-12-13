@@ -19,3 +19,4 @@ Setup the Project:
  Install Fort Awesome using npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/fontawesome-svg-core
  Start the development server using npm run dev.
 
+* I plan to continue working on this project during the weekend, since I will have some spare time. Thank you for the opportunity, I really hope this will work out!
