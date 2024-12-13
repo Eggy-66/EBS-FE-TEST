@@ -1,14 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// Tipul structurii contextului
+
 interface CartContextType {
-  cart: { [key: string]: number }; // Cheia este ID-ul produsului, valoarea este cantitatea
+  cart: { [key: string]: number }; 
   addToCart: (productId: string) => void;
   removeFromCart: (productId: string) => void;
   clearCart: () => void;
 }
 
-// Creează contextul cu tipul definit
 export const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

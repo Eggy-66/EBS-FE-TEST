@@ -3,7 +3,7 @@ import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import './Navbar.css'; // Importăm fișierul CSS
+import './css/Navbar.css'; 
 
 const Navbar: React.FC = () => {
   const cartContext = useContext(CartContext);
@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
 
   const { cart } = cartContext;
 
-  // Calculăm numărul total de produse din coș
+
   const totalItems = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
 
   return (
@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
       </Link>
       <Link to="/cart" className="navbar-link cart-link">
         <FontAwesomeIcon icon={faShoppingCart} className="icon" />
-        <span className="link-text">Cart</span>
+        <span className="link-text">--</span>
         {totalItems > 0 && (
           <span className="cart-badge">{totalItems}</span>
         )}

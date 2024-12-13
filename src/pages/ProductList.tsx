@@ -3,7 +3,7 @@ import { CartContext } from '../context/CartContext';
 import { useContext } from 'react';
 import { Product } from '../types/types';
 import Card from '../components/Card';
-import './ProductList.css';
+import './css/ProductList.css';
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -83,7 +83,7 @@ const ProductList: React.FC = () => {
     <div className="product-list-container">
       <h1 className="product-list-title">Products</h1>
 
-      {/* Filtre */}
+      
       <div className="filters">
         <select
           className="category-filter"

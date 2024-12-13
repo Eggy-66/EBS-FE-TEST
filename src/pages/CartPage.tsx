@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import { Product } from '../types/types';
+import './css/CartPage.css'; 
 
 const CartPage: React.FC = () => {
   const cartContext = useContext(CartContext);
@@ -29,7 +30,6 @@ const CartPage: React.FC = () => {
   const getProductById = (id: string) =>
     products.find((product) => product.id === parseInt(id));
 
-
   const calculateTotalPrice = () => {
     return Object.entries(cart).reduce((total, [productId, quantity]) => {
       const product = getProductById(productId);
@@ -38,43 +38,49 @@ const CartPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Your Cart</h1>
+    <div className="cart-page">
+      <h1 className="cart-title">Your Cart</h1>
       {Object.keys(cart).length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p className="empty-cart">Your cart is empty.</p>
       ) : (
         <div>
-          <ul>
+          <ul className="cart-items">
             {Object.entries(cart).map(([productId, quantity]) => {
               const product = getProductById(productId);
               return product ? (
-                <div className="card" key={productId}>
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    style={{ width: '150px', height: '150px', objectFit: 'cover' }}
-                  />
-                  <h2>{product.title}</h2>
-                  <p>Price: ${product.price}</p>
-                  <p>Quantity: {quantity}</p>
-                  <button onClick={() => addToCart(productId)}>+</button>
-                  <button onClick={() => removeFromCart(productId)}>-</button>
+                <div className="cart-item" key={productId}>
+                  <img src={product.image} alt={product.title} className="cart-item-image" />
+                  <div className="cart-item-details">
+                    <h2 className="cart-item-title">{product.title}</h2>
+                    <p className="cart-item-price">Price: ${product.price.toFixed(2)}</p>
+                    <p className="cart-item-quantity">Quantity: {quantity}</p>
+                    <div className="cart-item-actions">
+                      <button onClick={() => addToCart(productId)} className="cart-item-button">
+                        +
+                      </button>
+                      <button onClick={() => removeFromCart(productId)} className="cart-item-button">
+                        -
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ) : null;
             })}
           </ul>
-          {/* Afișarea prețului total */}
-          <div style={{ marginTop: '20px', fontSize: '18px', fontWeight: 'bold' }}>
+          
+          <div className="total-price">
             Total Price: ${calculateTotalPrice().toFixed(2)}
           </div>
         </div>
       )}
-      <button onClick={clearCart} style={{ marginTop: '20px' }}>
-        Clear Cart
-      </button>
-      <Link to="/" style={{ marginTop: '20px', display: 'block' }}>
-        Back to Products
-      </Link>
+      <div className="cart-actions">
+        <button onClick={clearCart} className="clear-cart-button">
+          Clear Cart
+        </button>
+        <Link to="/" className="back-to-products">
+          Back to Products
+        </Link>
+      </div>
     </div>
   );
 };

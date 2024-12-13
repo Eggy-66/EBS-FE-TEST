@@ -1,12 +1,19 @@
-.App {
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     width: 100%;
-    height: auto;
-    min-height: 100vh;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  body {
-    padding: 0;
-    margin: 0;
+  .App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
   }
   
+  .main-content {
+    flex: 1; 
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
