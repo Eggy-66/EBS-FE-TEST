@@ -5,9 +5,11 @@ import ProductList from './pages/ProductList';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import  Header  from './components/Navbar';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
+    <div className="App">
     <CartProvider>
       <Router>
         <Header />
@@ -17,7 +19,9 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
         </Routes>
       </Router>
+      <Footer />
     </CartProvider>
+    </div>
   );
 };
 

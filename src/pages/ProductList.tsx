@@ -3,6 +3,7 @@ import { CartContext } from '../context/CartContext';
 import { useContext } from 'react';
 import { Product } from '../types/types';
 import Card from '../components/Card';
+import './ProductList.css';
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -12,7 +13,6 @@ const ProductList: React.FC = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // State pentru paginare
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage = 8;
 
@@ -31,8 +31,7 @@ const ProductList: React.FC = () => {
         setProducts(data);
         setFilteredProducts(data);
 
-        // Extragem categoriile din produse
-        const uniqueCategories = Array.from(new Set(data.map((product: Product) => product.category)));
+        const uniqueCategories = Array.from(new Set(data.map((product: Product) => product.category)) as Set<string>);
         setCategories(['All', ...uniqueCategories]);
 
         setLoading(false);
@@ -46,19 +45,15 @@ const ProductList: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Aplicăm filtrele pe produsele originale
     let filtered = products;
 
-    // Filtrare după categorie
     if (selectedCategory !== 'All') {
       filtered = filtered.filter((product) => product.category === selectedCategory);
     }
 
-    // Filtrare după interval de preț
     filtered = filtered.filter((product) => product.price >= priceRange[0] && product.price <= priceRange[1]);
 
     setFilteredProducts(filtered);
-    // Resetăm pagina curentă la 1 când schimbăm filtrarea
     setCurrentPage(1);
   }, [products, selectedCategory, priceRange]);
 
@@ -66,12 +61,10 @@ const ProductList: React.FC = () => {
     return <p>Loading products...</p>;
   }
 
-  // Calcul pentru paginare
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // Funcții de navigare între pagini
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const nextPage = () => {
@@ -87,13 +80,16 @@ const ProductList: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Products</h1>
+    <div className="product-list-container">
+      <h1 className="product-list-title">Products</h1>
 
       {/* Filtre */}
-      <div style={{ marginBottom: '20px', display: 'flex', gap: '20px' }}>
-        {/* Filtrare după categorie */}
-        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+      <div className="filters">
+        <select
+          className="category-filter"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
           {categories.map((category) => (
             <option key={category} value={category}>
               {category}
@@ -101,9 +97,8 @@ const ProductList: React.FC = () => {
           ))}
         </select>
 
-        {/* Filtrare după preț */}
-        <div>
-          <label>Price: </label>
+        <div className="price-filter">
+          <label>Price:</label>
           <input
             type="range"
             min="0"
@@ -125,7 +120,7 @@ const ProductList: React.FC = () => {
       </div>
 
       {/* Lista de produse */}
-      <div className="product-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
+      <div className="product-grid">
         {currentProducts.map((product) => (
           <Card
             key={product.id}
@@ -137,11 +132,11 @@ const ProductList: React.FC = () => {
 
       {/* Navigație pentru pagini */}
       {filteredProducts.length > productsPerPage && (
-        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <div className="pagination">
           <button onClick={prevPage} disabled={currentPage === 1}>
             Previous
           </button>
-          <span style={{ margin: '0 10px' }}>
+          <span>
             Page {currentPage} of {totalPages}
           </span>
           <button onClick={nextPage} disabled={currentPage === totalPages}>

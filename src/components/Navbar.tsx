@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import './Navbar.css'; // Importăm fișierul CSS
 
 const Navbar: React.FC = () => {
   const cartContext = useContext(CartContext);
@@ -15,25 +18,16 @@ const Navbar: React.FC = () => {
   const totalItems = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
 
   return (
-    <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', backgroundColor: '#f4f4f4' }}>
-      <Link to="/">Home</Link>
-      <Link to="/cart" style={{ position: 'relative', textDecoration: 'none', color: 'black' }}>
-        <span>Cart</span>
+    <nav className="navbar">
+      <Link to="/" className="navbar-link">
+        <FontAwesomeIcon icon={faHome} className="icon" />
+        <span className="link-text">Home</span>
+      </Link>
+      <Link to="/cart" className="navbar-link cart-link">
+        <FontAwesomeIcon icon={faShoppingCart} className="icon" />
+        <span className="link-text">Cart</span>
         {totalItems > 0 && (
-          <span
-            style={{
-              position: 'absolute',
-              top: '-10px',
-              right: '-10px',
-              backgroundColor: 'red',
-              color: 'white',
-              borderRadius: '50%',
-              padding: '5px 10px',
-              fontSize: '12px',
-            }}
-          >
-            {totalItems}
-          </span>
+          <span className="cart-badge">{totalItems}</span>
         )}
       </Link>
     </nav>
