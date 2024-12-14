@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
-import { Link } from 'react-router-dom';
 import { Product } from '../types/types';
 import './css/CartPage.css'; 
 
@@ -75,10 +74,7 @@ const CartPage: React.FC = () => {
         <button onClick={clearCart} className="clear-cart-button">
           Clear Cart
         </button>
-        {/* <Link to="/" className="back-to-products">
-          Back to Products
-        </Link> */}
-                  <div className="total-price">
+          <div className="total-price">
             Total Price: ${calculateTotalPrice().toFixed(2)}
           </div>
       </div>
