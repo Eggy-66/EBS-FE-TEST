@@ -53,7 +53,7 @@ const CartPage: React.FC = () => {
                   <div className="cart-item-details">
                     <h2 className="cart-item-title">{product.title}</h2>
                     <p className="cart-item-price">Price: ${product.price.toFixed(2)}</p>
-                    <p className="cart-item-quantity">Quantity: {quantity}</p>
+                    <p className="cart-item-quantity">Pcs: {quantity}</p>
                     <div className="cart-item-actions">
                       <button onClick={() => addToCart(productId)} className="cart-item-button">
                         +
@@ -68,18 +68,19 @@ const CartPage: React.FC = () => {
             })}
           </ul>
           
-          <div className="total-price">
-            Total Price: ${calculateTotalPrice().toFixed(2)}
-          </div>
+
         </div>
       )}
       <div className="cart-actions">
         <button onClick={clearCart} className="clear-cart-button">
           Clear Cart
         </button>
-        <Link to="/" className="back-to-products">
+        {/* <Link to="/" className="back-to-products">
           Back to Products
-        </Link>
+        </Link> */}
+                  <div className="total-price">
+            Total Price: ${calculateTotalPrice().toFixed(2)}
+          </div>
       </div>
     </div>
   );

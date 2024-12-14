@@ -1,6 +1,7 @@
 .product-list-container {
   padding: 20px;
   min-height: 100%;
+  
 }
 
 .product-list-title {
@@ -48,7 +49,7 @@
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #747781;
   color: white;
   cursor: pointer;
 }

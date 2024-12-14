@@ -15,5 +15,6 @@ body, html {
   .main-content {
     flex: 1; 
     padding: 20px;
-    background-color: #f8f9fa;
+    background-image: url('./assets/images/hero-bg.jpg');
+  background-size: cover;
   }

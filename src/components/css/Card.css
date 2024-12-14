@@ -8,6 +8,7 @@
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 300px;
+  min-width: 200px;
   margin: 10px;
   background-color: #fff;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -57,24 +58,44 @@
   gap: 5px;
   padding: 8px 12px;
   font-size: 0.9rem;
-  border: none;
-  background-color: #007bff;
+  font-weight: bold;
   color: white;
+  background: linear-gradient(to right, #05a95c, #02c39a);
+  border: 2px solid transparent;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
 }
 
-.card-button.added {
-  background-color: #28a745; /* Verde pentru starea "Added" */
+.card-button::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #05a95c, #2f5354, #02c39a);
+  z-index: -1;
+  border-radius: 7px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-button:hover::before {
+  opacity: 1;
 }
 
 .card-button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to right, #02c39a, #05a95c);
+  color: white;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
-.card-button:hover:not(.added) {
-  background-color: #0056b3;
+.card-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .card-button:disabled {
