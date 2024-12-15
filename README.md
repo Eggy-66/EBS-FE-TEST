@@ -11,7 +11,7 @@ This is a simple e-commerce application built with React, React Router, Context 
 - **Filters**: Filter products by category and price range.
 - **Pagination**: Supports navigation through pages of products.
 - **Responsive Design**: Works seamlessly across devices of all screen sizes.
-
+- **Loading Message**: Displays loading message while fetching data.
 Setup the Project:
 
  Clone the project.
@@ -19,4 +19,3 @@ Setup the Project:
  Install Fort Awesome using npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/fontawesome-svg-core
  Start the development server using npm run dev.
 
-* I plan to continue working on this project during the weekend, since I will have some spare time. Thank you for the opportunity, I really hope this will work out!
