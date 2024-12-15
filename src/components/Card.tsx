@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Product } from '../types/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom'; // Importăm Link pentru navigare
 import './css/Card.css';
 
 interface CardProps {
   product: Product;
   onAddToCart: () => void;
-  onViewDetails?: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ product, onAddToCart, onViewDetails }) => {
-  const [isAdded, setIsAdded] = useState(false); 
+const Card: React.FC<CardProps> = ({ product, onAddToCart }) => {
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
     onAddToCart(); // Apelăm funcția primită prin props
@@ -21,7 +21,14 @@ const Card: React.FC<CardProps> = ({ product, onAddToCart, onViewDetails }) => {
 
   return (
     <div className="card">
-      <img src={product.image} alt={product.title} className="card-image" />
+      {/* Link pe imagine */}
+      <Link to={`/product/${product.id}`} className="card-link">
+        <img
+          src={product.image}
+          alt={product.title}
+          className="card-image"
+        />
+      </Link>
       <div className="card-content">
         <h3 className="card-title">{product.title}</h3>
         <p className="card-price">Price: ${product.price.toFixed(2)}</p>
@@ -37,12 +44,6 @@ const Card: React.FC<CardProps> = ({ product, onAddToCart, onViewDetails }) => {
             />
             {isAdded ? 'Added' : 'Add to Cart'}
           </button>
-          {onViewDetails && (
-            <button onClick={onViewDetails} className="card-button">
-              <FontAwesomeIcon icon={faCartPlus} className="card-icon" /> View
-              Details
-            </button>
-          )}
         </div>
       </div>
     </div>

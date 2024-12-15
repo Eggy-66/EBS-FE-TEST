@@ -24,6 +24,12 @@
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.card-link:hover .card-image {
+  cursor: pointer;
+  transform: scale(1.05); /* Zoom mic la hover */
 }
 
 .card-content {
@@ -53,22 +59,16 @@
 }
 
 .card-button {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 8px 12px;
-  font-size: 0.9rem;
+  padding: 10px 20px;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
   background: linear-gradient(to right, #05a95c, #02c39a);
-  border: 2px solid transparent;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-  background-clip: padding-box;
-  position: relative;
-  overflow: hidden;
 }
 
 .card-button::before {
