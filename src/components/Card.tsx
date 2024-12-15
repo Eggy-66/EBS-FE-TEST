@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Product } from '../types/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom'; // Importăm Link pentru navigare
+import { Link } from 'react-router-dom';
 import './css/Card.css';
 
 interface CardProps {
